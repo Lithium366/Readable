@@ -20,6 +20,8 @@ class Post extends Component {
           </span>
           <span>By: {post.author}</span>
           <span>Posted: { moment(post.timestamp).format('MM-DD-YYYY, h:mmA') }</span>
+          <button><FontAwesome.FaTrash/></button>
+          <button><FontAwesome.FaPencil/></button>
         </div>
       </div>
     );

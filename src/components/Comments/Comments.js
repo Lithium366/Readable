@@ -22,6 +22,8 @@ class Post extends Component {
               </span>
               <span>By: {comment.author}</span>
               <span>Posted: { moment(comment.timestamp).format('MM-DD-YYYY, h:mmA') }</span>
+              <button><FontAwesome.FaTrash/></button>
+              <button><FontAwesome.FaPencil/></button>
             </div>
           </div>
         ))}

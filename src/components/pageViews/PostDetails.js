@@ -20,6 +20,9 @@ class PostPage extends Component {
         <div className="postComments">
           <Comments post_id={post_id} />
         </div>
+        <div>
+          Add comment form here
+        </div>
       </div>
     );
   }
