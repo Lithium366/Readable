@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Categories from '../Categories';
+import Categories from '../Categories/CategoriesContainer';
+import Posts from '../Posts/PostsContainer';
 
 class PostsList extends Component {
   render() {
@@ -13,8 +14,11 @@ class PostsList extends Component {
 
     return (
       <div>
-        <Categories category={category} />
-        <div>Posts</div>
+        <div>
+          Categories: <Categories category={category} />
+        </div>
+        <Posts category={category} />
+        <button>New post</button>
       </div>
     );
   }

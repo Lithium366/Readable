@@ -1,28 +1,70 @@
-.App {
-  text-align: center;
+html,
+body {
+    padding: 0;
+    margin: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.categoriesList {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.categoriesList li {
+    display: inline-block;
+    margin: 0 20px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.categoriesList li a {
+    text-decoration: none;
 }
 
-.App-intro {
-  font-size: large;
+.categoriesList li.active a {
+    font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.postsList li {
+    margin: 0 0 0 20px;
+}
+
+.meta {
+    text-align: right;
+    font-size: 12px;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+
+.meta span {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.postsList {
+    margin-top: 20px;
+}
+
+.postsList td,
+.postsList th {
+    text-align: left;
+    padding: 0 10px;
+}
+
+.postsList td:first-of-type,
+.postsList th:first-of-type {
+    padding-left: 0;
+}
+
+.postsList td:last-of-type,
+.postsList th:last-of-type {
+    padding-right: 0;
+}
+
+.postDetails {
+    background-color: #ebebeb;
+    padding: 20px 30px;
+}
+
+.postComments {
+    padding: 0 30px;
 }

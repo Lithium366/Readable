@@ -13,3 +13,6 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 // Voting
 export const VOTE_UP = 'VOTE_UP';
 export const VOTE_DOWN = 'VOTE_DOWN';
+
+// Categories
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
