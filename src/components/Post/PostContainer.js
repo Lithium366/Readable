@@ -1,10 +1,31 @@
 import { connect } from 'react-redux';
 import Post from './Post';
+import {
+  deletePost,
+  vote
+} from '../../util/api';
 
-const mapStateToProps = (state, props) => {
+import {
+  DELETE_POST,
+  POST_VOTE,
+} from '../../actions';
+
+const mapDispatchToProps = (dispatch) => {
   return {
-    post: state.posts.filter(post => post.id === props.post_id)[0]
-  };
+    deletePost: (postId) => {
+      deletePost(postId)
+        .then(post => dispatch({type: DELETE_POST, post}))
+    },
+    vote: (postId, direction) => {
+      // Update local state first for an immediate feedback
+      dispatch({type: POST_VOTE, postId, direction});
+      vote(postId, 'posts', direction);
+    }
+  }
 };
 
-export default connect(mapStateToProps)(Post);
+const mapStateToProps = (state, props) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

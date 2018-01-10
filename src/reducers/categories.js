@@ -1,19 +1,19 @@
 import {
   FETCH_CATEGORIES
 } from '../actions';
+const all = { name: 'all', path: '' };
 
-const initialState = [
-  { name: 'react', path: 'react' },
-  { name: 'redux', path: 'redux' },
-  { name: 'udacity', path: 'udacity' },
-];
+const initialState = [ all ];
 
 function posts(state = initialState, action) {
   const { categories } = action;
 
   switch (action.type) {
     case FETCH_CATEGORIES:
-      return categories;
+      return [
+        all,
+        ...categories
+      ];
     default:
       return state;
   }
