@@ -1,6 +1,4 @@
-// Manipulating categories
-
-// Manipulating posts
+// Posts
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const FETCH_POST = 'FETCH_POST';
@@ -10,7 +8,7 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 
-// Manipulating comments
+// Comments
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const RESET_COMMENTS = 'RESET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
