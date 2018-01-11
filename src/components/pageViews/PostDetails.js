@@ -80,7 +80,7 @@ class PostPage extends Component {
         </div>
         <div className="commentsForm">
           <h4>Add a new comment:</h4>
-          <CommentForm />
+          <CommentForm parentId={postId} />
         </div>
       </div>
     );

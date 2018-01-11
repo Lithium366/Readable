@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import * as FontAwesome from 'react-icons/lib/fa';
+import CommentForm from '../forms/CommentFormContainer';
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      edit: false
+    };
+
+    this.onHideForm = this.onHideForm.bind(this);
+  }
   componentWillMount() {
     const {
       fetchComments,
@@ -11,11 +20,29 @@ class Post extends Component {
 
     fetchComments(postId);
   }
+  onEditComment(id) {
+    this.setState({
+      edit: true,
+      editId: id
+    })
+  }
+  onHideForm() {
+    this.setState({
+      edit: false
+    });
+  }
   render() {
     const {
       comments,
       vote,
-      } = this.props;
+      deleteComment,
+      postId
+    } = this.props;
+    const {
+      edit,
+      editId
+    } = this.state;
+
 
     return (
       <div>
@@ -33,9 +60,12 @@ class Post extends Component {
               </span>
               <span>By: {comment.author}</span>
               <span>Posted: { moment(comment.timestamp).format('MM-DD-YYYY, h:mmA') }</span>
-              <button className="buttonControl"><FontAwesome.FaTrash/></button>
-              <button className="buttonControl"><FontAwesome.FaPencil/></button>
+              <button onClick={() => deleteComment(comment.id)} className="buttonControl"><FontAwesome.FaTrash/></button>
+              <button onClick={() => this.onEditComment(comment.id)} className="buttonControl"><FontAwesome.FaPencil/></button>
             </div>
+            { edit && editId === comment.id &&
+              <CommentForm comment={comment} onHideForm={this.onHideForm} parentId={postId} />
+            }
           </div>
         ))}
       </div>

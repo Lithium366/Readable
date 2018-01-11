@@ -30,9 +30,11 @@ class PostForm extends Component {
       categories
       } = nextProps;
 
-    this.setState({
-      category: category || categories[1].name
-    });
+    if (nextProps.categories && nextProps.categories.length >= 2) {
+      this.setState({
+        category: category || categories[1].name
+      });
+    }
   }
 
   changeValue(e) {

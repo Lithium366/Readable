@@ -2,13 +2,15 @@ import { connect } from 'react-redux';
 import Comments from './Comments';
 import {
   fetchComments,
+  deleteItem,
   vote
 } from '../../util/api';
 
 import {
   FETCH_COMMENTS,
   RESET_COMMENTS,
-  COMMENT_VOTE
+  COMMENT_VOTE,
+  DELETE_COMMENT
 } from '../../actions';
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,6 +20,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({type: RESET_COMMENTS});
       fetchComments(postId)
         .then(comments => dispatch({type: FETCH_COMMENTS, comments}));
+    },
+    deleteComment: (id) => {
+      deleteItem(id, 'comments')
+        .then(comment => dispatch({type: DELETE_COMMENT, comment}))
     },
     vote: (commentId, direction) => {
       dispatch({type: COMMENT_VOTE, commentId, direction});

@@ -78,9 +78,13 @@ body {
     margin: 0 5px;
 }
 
+.newPostFormContainer {
+    background: #ebebeb;
+}
+
 .newPostFormContainer,
 .listContent {
-    margin: 0 20px;
+    padding: 20px 30px;
 }
 
 .newPostFormContainer label {
@@ -95,5 +99,5 @@ body {
 }
 
 .newPostFormContainer textarea {
-    height: 200px;
+    height: 100px;
 }

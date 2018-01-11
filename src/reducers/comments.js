@@ -23,18 +23,23 @@ function comments(state = initialState, action) {
     case RESET_COMMENTS:
       return initialState;
     case ADD_COMMENT:
-      return {
+      return [
         ...state,
         comment
-      };
-    case DELETE_COMMENT:
-    case UPDATE_COMMENT:
+      ];
     case COMMENT_VOTE: {
       const nextState = state.concat();
       const index = nextState.findIndex(v => v.id === commentId);
       nextState[index].voteScore += direction;
       return nextState;
     }
+    case DELETE_COMMENT:
+      return state.filter(v => v.id !== comment.id);
+    case UPDATE_COMMENT:
+      const nextState = state.concat();
+      const index = nextState.findIndex(v => v.id === comment.id);
+      nextState[index] = comment;
+      return nextState;
     default:
       return state
   }

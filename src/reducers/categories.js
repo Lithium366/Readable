@@ -3,9 +3,7 @@ import {
 } from '../actions';
 const all = { name: 'all', path: '' };
 
-const initialState = [ all ];
-
-function posts(state = initialState, action) {
+function posts(state = [ all ], action) {
   const { categories } = action;
 
   switch (action.type) {

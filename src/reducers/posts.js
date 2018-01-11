@@ -9,9 +9,7 @@ import {
   POST_VOTE
 } from '../actions';
 
-const initialState = [];
-
-function posts(state = initialState, action) {
+function posts(state = [], action) {
   const {
     post,
     posts,

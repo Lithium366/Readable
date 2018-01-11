@@ -1,53 +1,54 @@
-const APIUrl = 'http://localhost:3001';
+const fetchWrapper = (path, config = {}) => {
+  const APIUrl = 'http://localhost:3001';
 
-const APIConfig = {
-  headers: {
-    'Authorization': 'whatever-you-want',
-  },
+  const APIConfig = {
+    headers: {
+      'Authorization': 'whatever-you-want',
+      'Content-Type': 'application/json'
+    },
+  };
+
+  return fetch(`${APIUrl}${path}`, {
+    ...APIConfig,
+    ...config
+  }).then(res => res.json());
 };
 
 // Categories
-const fetchCategories = () => fetch(`${APIUrl}/categories`, APIConfig).then(res => res.json());
+const fetchCategories = () => fetchWrapper(`/categories`);
 
 // Posts
-const fetchAllPosts = () => fetch(`${APIUrl}/posts`, APIConfig).then(res => res.json());
-const fetchCategoryPosts = (category) => fetch(`${APIUrl}/${category}/posts`, APIConfig).then(res => res.json());
-const fetchPost = (postId) => fetch(`${APIUrl}/posts/${postId}`, APIConfig).then(res => res.json());
-const deletePost = (postId) => fetch(`${APIUrl}/posts/${postId}`, { ...APIConfig, method: 'DELETE' }).then(res => res.json());
-const addPost = (postData) => fetch(`${APIUrl}/posts`, {
+const fetchAllPosts = () => fetchWrapper(`/posts`);
+const fetchCategoryPosts = (category) => fetchWrapper(`/${category}/posts`);
+const fetchPost = (postId) => fetchWrapper(`/posts/${postId}`);
+const addPost = (postData) => fetchWrapper(`/posts`, {
   method: 'POST',
-  body: JSON.stringify(postData),
-  headers: {
-    ...APIConfig.headers,
-    'Content-Type': 'application/json'
-  }
-}).then(res => res.json());
-const updatePost = (postData) => fetch(`${APIUrl}/posts/${postData.id}`, {
+  body: JSON.stringify(postData)
+});
+const updatePost = (postData) => fetchWrapper(`/posts/${postData.id}`, {
   method: 'PUT',
-  body: JSON.stringify({
-    title: postData.title,
-    body: postData.body
-  }),
-  headers: {
-    ...APIConfig.headers,
-    'Content-Type': 'application/json'
-  }
-}).then(res => res.json());
+  body: JSON.stringify({ title: postData.title, body: postData.body })
+});
 
 // Comments
-const fetchComments = (postId) => fetch(`${APIUrl}/posts/${postId}/comments`, APIConfig).then(res => res.json());
+const fetchComments = (postId) => fetchWrapper(`/posts/${postId}/comments`);
+const updateComment = (commentData) => fetchWrapper(`/comments/${commentData.id}`, {
+  method: 'PUT',
+  body: JSON.stringify({ timestamp: commentData.timestamp, body: commentData.body })
+});
+const addComment = (commentData) => fetchWrapper(`/comments`, {
+  method: 'POST',
+  body: JSON.stringify(commentData)
+});
 
 // Voting. Accept types 'comments' and 'posts'
-const vote = (id, type, direction) => fetch(`${APIUrl}/${type}/${id}`, {
+const vote = (id, type, direction) => fetchWrapper(`/${type}/${id}`, {
   method: 'POST',
-  body: JSON.stringify({
-    option: direction === -1 ? 'downVote' : 'upVote'
-  }),
-  headers: {
-    ...APIConfig.headers,
-    'Content-Type': 'application/json'
-  }
-}).then(res => res.json());
+  body: JSON.stringify({ option: direction === -1 ? 'downVote' : 'upVote' })
+});
+
+// Deleting 'comments' and 'posts'
+const deleteItem = (id, type) => fetchWrapper(`/${type}/${id}`, { method: 'DELETE' });
 
 export {
   fetchCategories,
@@ -55,8 +56,10 @@ export {
   fetchCategoryPosts,
   fetchPost,
   vote,
-  deletePost,
   addPost,
   updatePost,
-  fetchComments
+  fetchComments,
+  deleteItem,
+  addComment,
+  updateComment
 }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Post from './Post';
 import {
-  deletePost,
+  deleteItem,
   vote
 } from '../../util/api';
 
@@ -12,8 +12,8 @@ import {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deletePost: (postId) => {
-      deletePost(postId)
+    deletePost: (id) => {
+      deleteItem(id, 'posts')
         .then(post => dispatch({type: DELETE_POST, post}))
     },
     vote: (postId, direction) => {
