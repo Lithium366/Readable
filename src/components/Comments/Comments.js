@@ -64,7 +64,9 @@ class Post extends Component {
               <button onClick={() => this.onEditComment(comment.id)} className="buttonControl"><FontAwesome.FaPencil/></button>
             </div>
             { edit && editId === comment.id &&
-              <CommentForm comment={comment} onHideForm={this.onHideForm} parentId={postId} />
+              <div className="inlineCommentsForm">
+                <CommentForm comment={comment} onHideForm={this.onHideForm} parentId={postId} />
+              </div>
             }
           </div>
         ))}

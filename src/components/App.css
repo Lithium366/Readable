@@ -78,26 +78,35 @@ body {
     margin: 0 5px;
 }
 
-.newPostFormContainer {
+.newPostFormContainer,
+.commentsForm,
+.inlineCommentsForm {
     background: #ebebeb;
 }
 
 .newPostFormContainer,
-.listContent {
+.listContent,
+.commentsForm {
     padding: 20px 30px;
 }
 
-.newPostFormContainer label {
+form label {
     display: block;
     line-height: 30px;
+    font-size: 12px;
 }
 
-.newPostFormContainer input,
-.newPostFormContainer textarea,
-.newPostFormContainer select {
+input,
+textarea,
+select {
     width: 300px;
 }
 
 .newPostFormContainer textarea {
     height: 100px;
+}
+
+.inlineCommentsForm {
+    padding: 20px 20px 30px;
+    margin-bottom: 30px;
 }
