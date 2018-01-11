@@ -19,10 +19,12 @@ class PostsList extends Component {
 
     return (
       <div>
-        <div>
-          Categories: <Categories category={category} />
+        <div className="listContent">
+          <div>
+            Categories: <Categories category={category} />
+          </div>
+          <Posts category={category} />
         </div>
-        <Posts category={category} />
         <div className="newPostFormContainer">
           <h4>Add a new post:</h4>
           <PostForm category={category} />

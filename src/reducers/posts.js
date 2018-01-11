@@ -34,15 +34,20 @@ function posts(state = initialState, action) {
       return nextState;
     }
     case ADD_POST:
-      return {
+      return [
         ...state,
         post
-      };
+      ];
     case SORT_POSTS:
       return state
         .concat()
         .sort((a, b) => direction === -1 ? b[property] - a[property] : a[property] - b[property]);
-    case UPDATE_POST:
+    case UPDATE_POST: {
+      const nextState = state.concat();
+      const index = nextState.findIndex(v => v.id === post.id);
+      nextState[index] = post;
+      return nextState;
+    }
     default:
       return state
   }

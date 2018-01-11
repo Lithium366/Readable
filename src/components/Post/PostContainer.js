@@ -25,7 +25,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, props) => {
-  return {};
+  return {
+    categories: state.categories
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

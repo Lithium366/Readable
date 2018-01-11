@@ -11,15 +11,17 @@ import {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllPosts: () => {
+    fetchAllPosts: (sortState) => {
       fetchAllPosts()
-        .then(posts => dispatch({type: FETCH_ALL_POSTS, posts}));
+        .then(posts => dispatch({type: FETCH_ALL_POSTS, posts}))
+        .then(() => dispatch({type: SORT_POSTS, ...sortState}))
     },
-    fetchCategoryPosts: (category) => {
+    fetchCategoryPosts: (category, sortState) => {
       // Don't show stale content
       dispatch({type: RESET_POSTS});
       fetchCategoryPosts(category)
-        .then(posts => dispatch({type: FETCH_CATEGORY_POSTS, posts}));
+        .then(posts => dispatch({type: FETCH_CATEGORY_POSTS, posts}))
+        .then(() => dispatch({type: SORT_POSTS, ...sortState}))
     },
     sortPosts: (direction, property) =>  {
       dispatch({
@@ -33,7 +35,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts
+    posts: state.posts,
+    sortState: state.sortState
   };
 };
 

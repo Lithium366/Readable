@@ -7,13 +7,14 @@ import * as FontAwesome from 'react-icons/lib/fa'
 const updatePosts = (props, category) => {
   const {
     fetchAllPosts,
-    fetchCategoryPosts
+    fetchCategoryPosts,
+    sortState
     } = props;
 
   if (category) {
-    fetchCategoryPosts(category);
+    fetchCategoryPosts(category, sortState);
   } else {
-    fetchAllPosts();
+    fetchAllPosts(sortState);
   }
 };
 
