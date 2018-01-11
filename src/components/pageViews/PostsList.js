@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Categories from '../Categories/CategoriesContainer';
 import Posts from '../Posts/PostsContainer';
-import PostForm from '../Forms/PostFormContainer';
+import PostForm from '../FormComponents/PostFormContainer';
 
 class PostsList extends Component {
   componentWillMount() {
