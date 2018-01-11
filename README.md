@@ -16,6 +16,6 @@ Instructions: https://github.com/udacity/reactnd-project-readable-starter
 
 ### `npm start`
 
-Application will be started on a 3002 port: http://localhost:3002
+Application will be started on a 3000 port: http://localhost:3000
 
 
