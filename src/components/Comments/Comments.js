@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import * as FontAwesome from 'react-icons/lib/fa';
-import CommentForm from '../forms/CommentFormContainer';
+import CommentForm from '../Forms/CommentFormContainer';
 
 class Post extends Component {
   constructor(props) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Post from '../Post/PostContainer';
 import Comments from '../Comments/CommentsContainer';
-import CommentForm from '../forms/CommentFormContainer';
-import PostForm from '../forms/PostFormContainer';
+import CommentForm from '../Forms/CommentFormContainer';
+import PostForm from '../Forms/PostFormContainer';
 
 class PostPage extends Component {
   constructor(props) {
