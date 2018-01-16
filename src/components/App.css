@@ -110,3 +110,11 @@ select {
     padding: 20px 20px 30px;
     margin-bottom: 30px;
 }
+
+nav {
+    padding: 10px 30px;
+}
+
+.addNewPostLink {
+    margin-left: 30px;
+}

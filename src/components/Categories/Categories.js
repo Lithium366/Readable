@@ -13,7 +13,7 @@ class Categories extends Component {
       <ul className="categoriesList">
         { categories.map(cat => (
           <li key={ cat.name } className={cat.name === category || (!category && cat.name === 'all') ? 'active' : ''}>
-            <Link to={ cat.path } >{ cat.name }</Link>
+            <Link to={ `/cat/${cat.path}` } >{ cat.name }</Link>
           </li>
         )) }
       </ul>

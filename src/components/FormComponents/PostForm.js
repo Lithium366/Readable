@@ -5,7 +5,8 @@ class PostForm extends Component {
     super(props);
 
     this.state = {
-      ...props.post
+      ...props.post,
+      category: props.category
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -21,19 +22,6 @@ class PostForm extends Component {
     // Lazy load categories
     if (categories.length < 2) {
       fetchCategories();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let {
-      category,
-      categories
-      } = nextProps;
-
-    if (nextProps.categories && nextProps.categories.length >= 2) {
-      this.setState({
-        category: category || categories[1].name
-      });
     }
   }
 
@@ -55,7 +43,8 @@ class PostForm extends Component {
       addPost,
       updatePost,
       onHideForm,
-      sortState
+      sortState,
+      onSuccess
     } = this.props;
     const {
       id,
@@ -75,6 +64,10 @@ class PostForm extends Component {
            body: '',
            author: ''
          });
+
+         if (typeof onSuccess === 'function') {
+           onSuccess();
+         }
        });
     }
   }

@@ -45,6 +45,9 @@ class Posts extends Component {
           <tr>
             <th>Title</th>
             <th>
+              Author
+            </th>
+            <th>
               Posted
               <button onClick={() => sortPosts(1, 'timestamp')} className="buttonControl"><FontAwesome.FaLongArrowUp /></button>
               <button onClick={() => sortPosts(-1, 'timestamp')} className="buttonControl"><FontAwesome.FaLongArrowDown /></button>
@@ -54,6 +57,9 @@ class Posts extends Component {
               <button onClick={() => sortPosts(1, 'voteScore')} className="buttonControl"><FontAwesome.FaLongArrowUp /></button>
               <button onClick={() => sortPosts(-1, 'voteScore')} className="buttonControl"><FontAwesome.FaLongArrowDown /></button>
             </th>
+            <th>
+              # of comments
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -61,9 +67,11 @@ class Posts extends Component {
           .filter(post => (post.category === category || !category))
           .map(post =>(
             <tr key={ post.id }>
-              <td><Link to={`${post.category}/${post.id}`} >{ post.title }</Link></td>
+              <td><Link to={`/view/${post.category}/${post.id}`} >{ post.title }</Link></td>
+              <td>{ post.author }</td>
               <td>{ moment(post.timestamp).format('MM-DD-YYYY, h:mmA') }</td>
               <td>{ post.voteScore }</td>
+              <td>{ post.commentCount }</td>
             </tr>
           )) }
         </tbody>

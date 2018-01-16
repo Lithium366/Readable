@@ -3,6 +3,7 @@ import Post from '../Post/PostContainer';
 import Comments from '../Comments/CommentsContainer';
 import CommentForm from '../FormComponents/CommentFormContainer';
 import PostForm from '../FormComponents/PostFormContainer';
+import { Link } from 'react-router-dom';
 
 class PostPage extends Component {
   constructor(props) {
@@ -41,6 +42,9 @@ class PostPage extends Component {
       edit: true
     });
   }
+  goBack() {
+    window.history.back();
+  }
   onHideForm() {
     this.setState({
       edit: false
@@ -67,6 +71,9 @@ class PostPage extends Component {
 
     return (
       <div>
+        <nav>
+          <Link to="" onClick={this.goBack}>&lt;- Go back to the list</Link>
+        </nav>
         <div className="postDetails">
           <Post postId={postId} posts={posts} onEdit={this.onEdit}/>
         </div>

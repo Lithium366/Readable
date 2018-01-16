@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Categories from '../Categories/CategoriesContainer';
 import Posts from '../Posts/PostsContainer';
-import PostForm from '../FormComponents/PostFormContainer';
+import { Link } from 'react-router-dom';
 
 class PostsList extends Component {
   componentWillMount() {
@@ -25,9 +25,8 @@ class PostsList extends Component {
           </div>
           <Posts category={category} />
         </div>
-        <div className="newPostFormContainer">
-          <h4>Add a new post:</h4>
-          <PostForm category={category} />
+        <div className="addNewPostLink">
+          <Link to={`/add/post/${category || 'react'}`}><button>Add new post</button></Link>
         </div>
       </div>
     );
