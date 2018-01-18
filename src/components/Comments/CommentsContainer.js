@@ -32,11 +32,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    comments: state.comments,
-    categories: state.categories
-  };
-};
+const mapStateToProps = ({ comments, categories }) => ({ comments, categories });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Comments);

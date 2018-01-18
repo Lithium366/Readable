@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Posts from './Posts';
 import { fetchAllPosts, fetchCategoryPosts } from '../../util/api';
+import PostMapDispatchToProps from '../Post/PostCommonActionCreators';
 
 import {
   SORT_POSTS,
@@ -11,6 +12,7 @@ import {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    ...PostMapDispatchToProps(dispatch),
     fetchAllPosts: (sortState) => {
       fetchAllPosts()
         .then(posts => dispatch({type: FETCH_ALL_POSTS, posts}))
@@ -33,11 +35,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts,
-    sortState: state.sortState
-  };
-};
+const mapStateToProps = ({ posts, sortState }) => ({ posts, sortState });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Posts);

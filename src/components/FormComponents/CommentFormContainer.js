@@ -31,8 +31,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const mapStateToProps = (state, props) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
+export default connect(
+  () => ({}),
+  mapDispatchToProps
+)(CommentForm);

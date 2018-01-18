@@ -23,7 +23,6 @@ function posts(state = [], action) {
     case FETCH_CATEGORY_POSTS:
       return posts;
     case FETCH_POST:
-    case DELETE_POST:
       return [ post ];
     case POST_VOTE: {
       const nextState = state.concat();
@@ -40,6 +39,7 @@ function posts(state = [], action) {
       return state
         .concat()
         .sort((a, b) => direction === -1 ? b[property] - a[property] : a[property] - b[property]);
+    case DELETE_POST:
     case UPDATE_POST: {
       const nextState = state.concat();
       const index = nextState.findIndex(v => v.id === post.id);

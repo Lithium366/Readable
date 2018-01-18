@@ -4,12 +4,14 @@ import Comments from '../Comments/CommentsContainer';
 import CommentForm from '../FormComponents/CommentFormContainer';
 import PostForm from '../FormComponents/PostFormContainer';
 import { Link } from 'react-router-dom';
+import Error404 from '../errors/Error404';
 
 class PostPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      edit: false
+      edit: false,
+      error404: false
     };
 
     this.onEdit = this.onEdit.bind(this);
@@ -33,8 +35,11 @@ class PostPage extends Component {
   }
   componentWillReceiveProps(nextProps) {
     // If post is deleted or error from the API - redirect to a landing page
-    if(nextProps.posts[0] && (nextProps.posts[0].deleted === true || nextProps.posts[0].error || !nextProps.posts[0].id)) {
-      window.location = '/';
+    const post = nextProps.posts[0];
+    if(post && (post.error || !post.id)) {
+      this.setState({
+        error404: true
+      });
     }
   }
   onEdit() {
@@ -61,11 +66,25 @@ class PostPage extends Component {
     } = this.props;
 
     const {
-      edit
+      edit,
+      error404
     } = this.state;
 
-    const filtered = posts.filter(v => (v.id === postId && v.deleted !== true));
-    if (!filtered.length) {
+    // If post is not found - show 404
+    if (error404) {
+      return (<Error404 />);
+    }
+
+    // If post was just deleted - redirect to home page, don't show 404
+    const isPostDeleted = posts.filter(v => (v.id === postId && v.deleted));
+    if (isPostDeleted.length === 1) {
+      window.location = '/';
+      return null;
+    }
+
+    // Postpone rendering if we don't have a
+    const post = posts.find(v => (v.id === postId));
+    if (!post) {
       return null;
     }
 
@@ -79,7 +98,7 @@ class PostPage extends Component {
         </div>
         { edit && (
           <div className="newPostFormContainer">
-            <PostForm post={posts.find(v => v.id === postId)} onHideForm={this.onHideForm} />
+            <PostForm post={post} onHideForm={this.onHideForm} />
           </div>
         )}
         <div className="postComments">

@@ -38,11 +38,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    categories: state.categories,
-    sortState: state.sortState
-  };
-};
+const mapStateToProps = ({ categories, sortState }) => ({ categories, sortState });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostForm);

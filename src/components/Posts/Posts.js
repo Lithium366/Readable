@@ -37,6 +37,8 @@ class Posts extends Component {
       posts,
       category,
       sortPosts,
+      deletePost,
+      vote
       } = this.props;
 
     return (
@@ -60,18 +62,26 @@ class Posts extends Component {
             <th>
               # of comments
             </th>
+            <th>
+              actions
+            </th>
           </tr>
         </thead>
         <tbody>
         { posts
-          .filter(post => (post.category === category || !category))
-          .map(post =>(
+          .filter(post => (!post.deleted && !post.error && (post.category === category || !category)))
+          .map(post => (
             <tr key={ post.id }>
               <td><Link to={`/view/${post.category}/${post.id}`} >{ post.title }</Link></td>
               <td>{ post.author }</td>
               <td>{ moment(post.timestamp).format('MM-DD-YYYY, h:mmA') }</td>
               <td>{ post.voteScore }</td>
               <td>{ post.commentCount }</td>
+              <td>
+                <button onClick={() => vote(post.id, 1)} className="buttonControl"><FontAwesome.FaThumbsOUp /></button>
+                <button onClick={() => vote(post.id, -1)} className="buttonControl"><FontAwesome.FaThumbsODown /></button>
+                <button onClick={() => deletePost(post.id)} className="buttonControl"><FontAwesome.FaTrash/></button>
+              </td>
             </tr>
           )) }
         </tbody>
